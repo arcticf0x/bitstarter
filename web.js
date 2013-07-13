@@ -2,14 +2,20 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
-var buffer = new Buffer(30);
-buffer.write(fs.readFileSync('index.html'), "utf-8")
+fs.readFileSync('/bitstarter/index.html', function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});
+
+buf = new Buffer(256)
+data = buf.toString()
 
 app.get('/', function(request, response) {
-  response.send(buffer.toString());
+  response.send('data');
 });
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
+ 
